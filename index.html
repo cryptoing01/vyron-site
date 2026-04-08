@@ -1,101 +1,211 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VYRON</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #020617, #0f172a, #1d4ed8);
-      color: white;
-      text-align: center;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-    .logo {
-      width: 180px;
-      border-radius: 24px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 56px;
-      margin: 0;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-    p {
-      font-size: 20px;
-      color: #cbd5e1;
-      max-width: 700px;
-      margin: 20px auto;
-    }
-    .btns {
-      margin-top: 30px;
-    }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 14px 24px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .primary {
-      background: #22d3ee;
-      color: #020617;
-    }
-    .secondary {
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-    }
-    .card-wrap {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 50px;
-    }
-    .card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 20px;
-    }
-    .small {
-      color: #94a3b8;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <img class="logo" src="https://via.placeholder.com/300x300.png?text=VYRON" alt="VYRON logo">
-    <h1>VYRON</h1>
-    <p>Built for speed, driven by momentum. A clean, launch-ready community coin with a premium look.</p>
+export default function VyronLaunchSite() {
+const stats = [
+{ label: 'Ticker', value: 'VYR' },
+{ label: 'Chain', value: 'Solana' },
+{ label: 'Launch', value: 'Fair Launch' },
+{ label: 'Community', value: 'Telegram + X' },
+];
 
-    <div class="btns">
-      <a class="btn primary" href="https://t.me/VyronPortal" target="_blank">Join Telegram</a>
-      <a class="btn secondary" href="https://x.com/VyronCoin" target="_blank">Follow on X</a>
+
+const features = [
+{
+title: 'Momentum Driven',
+text: 'Built for speed, visibility, and a clean launch presence that feels bigger than a typical meme project.',
+},
+{
+title: 'Premium Identity',
+text: 'A strong logo, sharp branding, and a polished landing page that instantly looks more serious.',
+},
+{
+title: 'Community First',
+text: 'Designed to push holders, hype, and fast engagement through your launch channels.',
+},
+];
+
+
+const roadmap = [
+'Launch VYRON and secure first holders',
+'Grow Telegram and X presence',
+'Push community momentum and visibility',
+'Expand branding and ecosystem presence',
+];
+
+
+return (
+
+
+
+
+
+
+
+
+
+
+  <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+    <div className="flex items-center gap-3">
+      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-fuchsia-500 font-black text-slate-950 shadow-lg shadow-cyan-500/30">
+        V
+      </div>
+      <div>
+        <div className="text-lg font-black tracking-wide">VYRON</div>
+        <div className="text-xs uppercase tracking-[0.25em] text-slate-400">VYR</div>
+      </div>
     </div>
 
-    <div class="card-wrap">
-      <div class="card">
-        <div class="small">Ticker</div>
-        <h3>VYR</h3>
+    <nav className="hidden gap-6 text-sm text-slate-300 md:flex">
+      <a href="#about" className="hover:text-white">About</a>
+      <a href="#token" className="hover:text-white">Token</a>
+      <a href="#roadmap" className="hover:text-white">Roadmap</a>
+      <a href="#join" className="hover:text-white">Join</a>
+    </nav>
+  </header>
+
+  <section className="mx-auto max-w-6xl px-6 pb-20 pt-8 md:pb-28 md:pt-14">
+    <div className="grid items-center gap-14 md:grid-cols-2">
+      <div>
+        <div className="mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1.5 text-sm text-cyan-300">
+          Premium community token · Launch ready
+        </div>
+        <h1 className="text-5xl font-black leading-none tracking-tight md:text-7xl">
+          Built for speed.<br />
+          Powered by momentum.
+        </h1>
+        <p className="mt-6 max-w-xl text-lg text-slate-300 md:text-xl">
+          VYRON is a bold, high-energy community coin with a polished identity, sharp visuals, and a premium launch presence.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <a
+            href="#join"
+            className="rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:scale-[1.02]"
+          >
+            Join Community
+          </a>
+          <a
+            href="#token"
+            className="rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white transition hover:bg-white/5"
+          >
+            View Token Info
+          </a>
+        </div>
+        <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-400">
+          <div><span className="font-semibold text-white">Name:</span> VYRON</div>
+          <div><span className="font-semibold text-white">Ticker:</span> VYR</div>
+          <div><span className="font-semibold text-white">Style:</span> Clean / Premium / Viral</div>
+        </div>
       </div>
-      <div class="card">
-        <div class="small">Chain</div>
-        <h3>Solana</h3>
-      </div>
-      <div class="card">
-        <div class="small">Launch Type</div>
-        <h3>Fair Launch</h3>
+
+      <div className="relative">
+        <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-cyan-400/20 via-blue-500/10 to-fuchsia-500/20 blur-2xl" />
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl">
+          <div className="mb-5 flex items-center justify-between">
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-slate-400">Official emblem</div>
+              <div className="mt-1 text-2xl font-black">VYRON</div>
+            </div>
+            <div className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-300">
+              Launch Ready
+            </div>
+          </div>
+          <div className="rounded-[2rem] border border-white/10 bg-slate-950/80 p-4">
+            <img
+              src="logo.png"
+              alt="VYRON logo"
+              className="mx-auto w-full max-w-md rounded-2xl"
+            />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-</html>
+  </section>
+
+  <section id="about" className="mx-auto max-w-6xl px-6 py-8 md:py-12">
+    <div className="grid gap-6 md:grid-cols-3">
+      {features.map((item) => (
+        <div key={item.title} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur">
+          <h3 className="text-xl font-bold">{item.title}</h3>
+          <p className="mt-3 text-slate-300">{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="token" className="mx-auto max-w-6xl px-6 py-10 md:py-16">
+    <div className="rounded-[2rem] border border-white/10 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/90 p-8 shadow-xl backdrop-blur-xl md:p-10">
+      <div className="grid items-start gap-8 md:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <div className="text-sm uppercase tracking-[0.3em] text-cyan-300">Token snapshot</div>
+          <h2 className="mt-3 text-3xl font-black md:text-4xl">Clean structure. Strong first impression.</h2>
+          <p className="mt-4 max-w-2xl text-slate-300">
+            This page is built to present VYRON like a real launch project. Replace the placeholders with your live token link, community pages, and chart once everything is active.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          {stats.map((item) => (
+            <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="text-sm text-slate-400">{item.label}</div>
+              <div className="mt-1 text-lg font-bold">{item.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap" className="mx-auto max-w-6xl px-6 py-8 md:py-14">
+    <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
+      <div>
+        <div className="text-sm uppercase tracking-[0.3em] text-fuchsia-300">Roadmap</div>
+        <h2 className="mt-3 text-3xl font-black md:text-4xl">Launch. Build. Push momentum.</h2>
+        <p className="mt-4 text-slate-300">
+          Keep it simple and visual. A clean roadmap makes the project feel bigger, more planned, and more trustworthy.
+        </p>
+      </div>
+      <div className="space-y-4">
+        {roadmap.map((step, index) => (
+          <div key={step} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-fuchsia-500 font-black text-slate-950">
+              {index + 1}
+            </div>
+            <div className="pt-1 text-slate-200">{step}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="join" className="mx-auto max-w-6xl px-6 py-16">
+    <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl">
+      <div className="grid gap-0 md:grid-cols-2">
+        <div className="bg-gradient-to-br from-cyan-400/15 via-blue-500/10 to-fuchsia-500/15 p-8 md:p-12">
+          <div className="text-sm uppercase tracking-[0.3em] text-cyan-300">Community</div>
+          <h2 className="mt-3 text-3xl font-black md:text-5xl">Join the VYRON movement</h2>
+          <p className="mt-4 max-w-xl text-slate-300">
+            Connect your real social pages here and use this section as your main call-to-action during launch.
+          </p>
+        </div>
+        <div className="p-8 md:p-12">
+          <div className="grid gap-4">
+            <a href="https://t.me/VyronPortal" className="rounded-2xl border border-white/10 bg-slate-900/70 px-5 py-4 font-semibold text-white transition hover:bg-slate-800">
+              Telegram Community
+            </a>
+            <a href="https://x.com/VyronCoin" className="rounded-2xl border border-white/10 bg-slate-900/70 px-5 py-4 font-semibold text-white transition hover:bg-slate-800">
+              X / Twitter
+            </a>
+            <a href="https://vyroncoin.xyz" className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-5 py-4 font-semibold text-cyan-300 transition hover:bg-cyan-400/15">
+              Official Website Link
+            </a>
+            <a href="#" className="rounded-2xl bg-gradient-to-r from-cyan-400 to-fuchsia-500 px-5 py-4 text-center font-black text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:scale-[1.01]">
+              Buy VYRON
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+);
+}
