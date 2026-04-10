@@ -7,13 +7,14 @@
   <meta name="description" content="MOONPUMP.EXE — No roadmap. No utility. Only UP." />
   <style>
     :root{
-      --bg:#070b1f;
-      --bg2:#101735;
-      --card:rgba(255,255,255,0.06);
+      --bg:#060917;
+      --bg2:#111633;
+      --card:rgba(255,255,255,0.07);
+      --card2:rgba(255,255,255,0.05);
       --border:rgba(255,255,255,0.12);
       --text:#ffffff;
-      --muted:#b9c3e3;
-      --muted2:#7f8bb5;
+      --muted:#bfc9ea;
+      --muted2:#8f9ac1;
       --pink:#ff4fd8;
       --purple:#7c3aed;
       --blue:#22d3ee;
@@ -21,25 +22,8 @@
       --orange:#ff7a18;
       --yellow:#ffd84d;
       --red:#ff5b7a;
-      --shadow:0 14px 40px rgba(0,0,0,.45);
+      --shadow:0 18px 50px rgba(0,0,0,.42);
     }
-    
-    .brand-logo img{
-  height:48px;
-  width:auto;
-  object-fit:contain;
-  filter: drop-shadow(0 0 10px rgba(124,58,237,0.5));
-    .brand-logo img{
-  height:48px;
-  width:auto;
-  object-fit:contain;
-  filter: drop-shadow(0 0 10px rgba(124,58,237,0.5));
-}.brand-logo img{
-  height:48px;
-  width:auto;
-  object-fit:contain;
-  filter: drop-shadow(0 0 10px rgba(124,58,237,0.5));
-}}
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -48,69 +32,164 @@
       font-family:Arial, Helvetica, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 15% 10%, rgba(255,79,216,.18), transparent 25%),
-        radial-gradient(circle at 90% 15%, rgba(34,211,238,.16), transparent 25%),
-        radial-gradient(circle at 50% 100%, rgba(124,58,237,.16), transparent 30%),
+        radial-gradient(circle at 18% 12%, rgba(255,79,216,.18), transparent 24%),
+        radial-gradient(circle at 85% 20%, rgba(34,211,238,.14), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(124,58,237,.18), transparent 34%),
         linear-gradient(180deg,var(--bg),var(--bg2));
       overflow-x:hidden;
     }
 
-    .bg-blob,.bg-blob2,.bg-blob3{
-      position:fixed;
-      border-radius:999px;
-      filter:blur(110px);
-      pointer-events:none;
-      z-index:0;
-      opacity:.8;
-    }
-
-    .bg-blob{
-      width:320px;height:320px;
-      background:rgba(255,79,216,.22);
-      left:-80px;top:40px;
-      animation:drift1 10s ease-in-out infinite alternate;
-    }
-
-    .bg-blob2{
-      width:360px;height:360px;
-      background:rgba(34,211,238,.18);
-      right:-100px;top:120px;
-      animation:drift2 12s ease-in-out infinite alternate;
-    }
-
-    .bg-blob3{
-      width:260px;height:260px;
-      background:rgba(124,58,237,.16);
-      left:35%;bottom:5%;
-      animation:drift3 14s ease-in-out infinite alternate;
-    }
-
-    @keyframes drift1{
-      from{transform:translate(0,0)}
-      to{transform:translate(120px,60px)}
-    }
-    @keyframes drift2{
-      from{transform:translate(0,0)}
-      to{transform:translate(-100px,80px)}
-    }
-    @keyframes drift3{
-      from{transform:translate(0,0)}
-      to{transform:translate(40px,-60px)}
-    }
-
-    .stars{
+    .space-bg{
       position:fixed;
       inset:0;
       z-index:0;
       pointer-events:none;
+      overflow:hidden;
+    }
+
+    .stars{
+      position:absolute;
+      inset:0;
       background-image:
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,.8) 0 1px, transparent 2px),
-        radial-gradient(circle at 20% 70%, rgba(255,255,255,.6) 0 1px, transparent 2px),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,.7) 0 1px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(255,255,255,.5) 0 1px, transparent 2px),
-        radial-gradient(circle at 55% 18%, rgba(255,255,255,.75) 0 1px, transparent 2px),
-        radial-gradient(circle at 45% 85%, rgba(255,255,255,.6) 0 1px, transparent 2px);
-      opacity:.45;
+        radial-gradient(circle at 10% 15%, rgba(255,255,255,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 23% 62%, rgba(255,255,255,.6) 0 1px, transparent 2px),
+        radial-gradient(circle at 73% 28%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 76%, rgba(255,255,255,.5) 0 1px, transparent 2px),
+        radial-gradient(circle at 60% 14%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 86%, rgba(255,255,255,.55) 0 1px, transparent 2px);
+      opacity:.55;
+    }
+
+    .moon{
+      position:absolute;
+      right:8%;
+      top:110px;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 35% 35%, #ffe7b5 0%, #ffc778 22%, #c96aff 58%, rgba(0,0,0,0) 75%);
+      box-shadow:
+        0 0 40px rgba(255,140,80,.25),
+        0 0 100px rgba(168,85,247,.22);
+      opacity:.9;
+      animation:moonGlow 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes moonGlow{
+      from{transform:scale(1); filter:blur(0px)}
+      to{transform:scale(1.04); filter:blur(.3px)}
+    }
+
+    .rocket-wrap{
+      position:absolute;
+      left:-180px;
+      top:340px;
+      width:340px;
+      height:120px;
+      animation:rocketFly 11s linear infinite;
+    }
+
+    .rocket{
+      position:relative;
+      width:120px;
+      height:46px;
+      transform:rotate(-22deg);
+    }
+
+    .rocket-body{
+      position:absolute;
+      left:24px;
+      top:8px;
+      width:62px;
+      height:26px;
+      border-radius:20px 18px 18px 20px;
+      background:linear-gradient(90deg,#f8fafc,#93c5fd);
+      box-shadow:0 0 18px rgba(147,197,253,.25);
+    }
+
+    .rocket-tip{
+      position:absolute;
+      left:80px;
+      top:8px;
+      width:0;
+      height:0;
+      border-left:26px solid #c4b5fd;
+      border-top:13px solid transparent;
+      border-bottom:13px solid transparent;
+    }
+
+    .rocket-tail{
+      position:absolute;
+      left:14px;
+      top:13px;
+      width:18px;
+      height:16px;
+      background:#94a3b8;
+      clip-path:polygon(100% 0, 0 50%, 100% 100%);
+    }
+
+    .rocket-fin-top,
+    .rocket-fin-bottom{
+      position:absolute;
+      left:34px;
+      width:14px;
+      height:14px;
+      background:#fb7185;
+    }
+
+    .rocket-fin-top{
+      top:2px;
+      clip-path:polygon(0 100%,100% 100%,100% 0);
+    }
+
+    .rocket-fin-bottom{
+      top:30px;
+      clip-path:polygon(0 0,100% 100%,100% 0);
+    }
+
+    .rocket-window{
+      position:absolute;
+      left:58px;
+      top:14px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#1d4ed8;
+      border:2px solid #dbeafe;
+    }
+
+    .rocket-flame{
+      position:absolute;
+      left:-18px;
+      top:15px;
+      width:26px;
+      height:14px;
+      background:linear-gradient(90deg,#38bdf8,#f97316,#fde047);
+      clip-path:polygon(100% 50%, 0 0, 20% 50%, 0 100%);
+      filter:blur(.3px);
+      animation:flamePulse .22s infinite alternate;
+    }
+
+    .rocket-trail{
+      position:absolute;
+      left:-150px;
+      top:25px;
+      width:170px;
+      height:8px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(34,211,238,0), rgba(34,211,238,.55), rgba(244,114,182,.65), rgba(253,224,71,.2));
+      filter:blur(6px);
+    }
+
+    @keyframes flamePulse{
+      from{transform:scaleX(1)}
+      to{transform:scaleX(1.18)}
+    }
+
+    @keyframes rocketFly{
+      0%{transform:translate(-120px, 120px)}
+      100%{transform:translate(calc(100vw + 260px), -250px)}
     }
 
     .wrap{
@@ -124,13 +203,13 @@
     .live-strip{
       position:sticky;
       top:0;
-      z-index:10;
-      background:rgba(7,11,31,.85);
+      z-index:50;
+      background:rgba(7,11,31,.86);
       border-bottom:1px solid rgba(255,255,255,.08);
       backdrop-filter:blur(10px);
       padding:12px 20px;
       display:flex;
-      gap:22px;
+      gap:20px;
       flex-wrap:wrap;
       align-items:center;
       justify-content:center;
@@ -152,35 +231,16 @@
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
-      color:white;
       text-decoration:none;
+      color:white;
     }
 
-    .brand-badge{
-      width:48px;height:48px;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,var(--orange),var(--yellow));
-      color:#140b00;
-      font-weight:900;
-      box-shadow:0 10px 24px rgba(255,122,24,.35);
-    }
-
-    .brand-text b{
+    .brand-logo img{
+      height:56px;
+      width:auto;
+      object-fit:contain;
       display:block;
-      font-size:18px;
-      letter-spacing:.04em;
-    }
-
-    .brand-text span{
-      display:block;
-      font-size:11px;
-      color:var(--muted2);
-      letter-spacing:.28em;
-      text-transform:uppercase;
+      filter:drop-shadow(0 0 12px rgba(124,58,237,0.7));
     }
 
     .nav-links{
@@ -334,13 +394,13 @@
       50%{transform:translateY(-10px)}
     }
 
-    .rocket{
+    .rocket-emoji{
       display:inline-block;
       margin-left:10px;
-      animation:rocketFly 1.2s ease-in-out infinite alternate;
+      animation:rocketEmojiFly 1.2s ease-in-out infinite alternate;
     }
 
-    @keyframes rocketFly{
+    @keyframes rocketEmojiFly{
       from{transform:translateY(0) rotate(-8deg)}
       to{transform:translateY(-8px) translateX(6px) rotate(8deg)}
     }
@@ -585,14 +645,28 @@
       }
 
       .chart-box iframe{height:420px}
+      .brand-logo img{height:42px}
+      .moon{width:120px;height:120px;top:140px}
     }
   </style>
 </head>
 <body>
-  <div class="bg-blob"></div>
-  <div class="bg-blob2"></div>
-  <div class="bg-blob3"></div>
-  <div class="stars"></div>
+  <div class="space-bg">
+    <div class="stars"></div>
+    <div class="moon"></div>
+    <div class="rocket-wrap">
+      <div class="rocket-trail"></div>
+      <div class="rocket">
+        <div class="rocket-tail"></div>
+        <div class="rocket-body"></div>
+        <div class="rocket-tip"></div>
+        <div class="rocket-fin-top"></div>
+        <div class="rocket-fin-bottom"></div>
+        <div class="rocket-window"></div>
+        <div class="rocket-flame"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="live-strip">
     <span>Price: <b id="stripPrice">...</b></span>
@@ -608,11 +682,7 @@
     <header class="nav">
       <a href="#" class="brand">
         <div class="brand-logo">
-  <img src="Logo.png" alt="MOONPUMP.EXE">
-</div>
-        <div class="brand-text">
-          <b>MOONPUMP.EXE</b>
-          <span>MPUMP</span>
+          <img src="banner.png" alt="MOONPUMP.EXE">
         </div>
       </a>
 
@@ -627,7 +697,7 @@
 
     <section class="hero">
       <div>
-        <div class="pill">No roadmap · No utility · Only UP <span class="rocket">🚀</span></div>
+        <div class="pill">No roadmap · No utility · Only UP <span class="rocket-emoji">🚀</span></div>
         <h1>Built to pump.<br>Built to moon.</h1>
         <p>
           MOONPUMP.EXE is pure meme momentum. A rocket, a moon, and a chart that should have no chill.
