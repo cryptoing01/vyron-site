@@ -9,8 +9,7 @@
     :root{
       --bg:#070b1f;
       --bg2:#101735;
-      --card:#12183f;
-      --card2:rgba(255,255,255,0.06);
+      --card:rgba(255,255,255,0.06);
       --border:rgba(255,255,255,0.12);
       --text:#ffffff;
       --muted:#b9c3e3;
@@ -21,6 +20,7 @@
       --green:#7cff5b;
       --orange:#ff7a18;
       --yellow:#ffd84d;
+      --red:#ff5b7a;
       --shadow:0 14px 40px rgba(0,0,0,.45);
     }
 
@@ -51,21 +51,21 @@
       width:320px;height:320px;
       background:rgba(255,79,216,.22);
       left:-80px;top:40px;
-      animation: drift1 10s ease-in-out infinite alternate;
+      animation:drift1 10s ease-in-out infinite alternate;
     }
 
     .bg-blob2{
       width:360px;height:360px;
       background:rgba(34,211,238,.18);
       right:-100px;top:120px;
-      animation: drift2 12s ease-in-out infinite alternate;
+      animation:drift2 12s ease-in-out infinite alternate;
     }
 
     .bg-blob3{
       width:260px;height:260px;
       background:rgba(124,58,237,.16);
       left:35%;bottom:5%;
-      animation: drift3 14s ease-in-out infinite alternate;
+      animation:drift3 14s ease-in-out infinite alternate;
     }
 
     @keyframes drift1{
@@ -104,38 +104,25 @@
       padding:0 20px;
     }
 
-    .live-buys{
+    .live-strip{
       position:sticky;
       top:0;
       z-index:10;
       background:rgba(7,11,31,.85);
       border-bottom:1px solid rgba(255,255,255,.08);
       backdrop-filter:blur(10px);
-      overflow:hidden;
-      white-space:nowrap;
-    }
-
-    .live-track{
-      display:inline-block;
-      padding:12px 0;
-      animation: ticker 22s linear infinite;
-      color:#dbe7ff;
+      padding:12px 20px;
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
       font-size:14px;
-    }
-
-    .live-track span{
-      display:inline-block;
-      margin-right:40px;
+      color:#dbe7ff;
     }
 
     .green{color:var(--green)}
-    .pink{color:var(--pink)}
-    .orange{color:var(--orange)}
-
-    @keyframes ticker{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
-    }
+    .red{color:var(--red)}
 
     .nav{
       display:flex;
@@ -250,6 +237,7 @@
       font-weight:800;
       transition:.2s ease;
       border:1px solid transparent;
+      cursor:pointer;
     }
 
     .btn:hover{transform:translateY(-2px) scale(1.01)}
@@ -321,7 +309,7 @@
       width:100%;
       display:block;
       border-radius:18px;
-      animation: floatLogo 4s ease-in-out infinite;
+      animation:floatLogo 4s ease-in-out infinite;
     }
 
     @keyframes floatLogo{
@@ -332,7 +320,7 @@
     .rocket{
       display:inline-block;
       margin-left:10px;
-      animation: rocketFly 1.2s ease-in-out infinite alternate;
+      animation:rocketFly 1.2s ease-in-out infinite alternate;
     }
 
     @keyframes rocketFly{
@@ -378,7 +366,7 @@
     }
 
     .card{
-      background:var(--card2);
+      background:var(--card);
       border:1px solid var(--border);
       border-radius:24px;
       padding:22px;
@@ -425,11 +413,6 @@
 
     .stat b{
       font-size:22px;
-    }
-
-    .up{
-      color:var(--green);
-      text-shadow:0 0 14px rgba(124,255,91,.28);
     }
 
     .contract-box{
@@ -559,32 +542,6 @@
       background:rgba(15,23,42,.95);
     }
 
-    .recent-buys{
-      margin-top:20px;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:18px;
-      text-align:left;
-      box-shadow:var(--shadow);
-    }
-
-    .recent-buys h3{
-      margin:0 0 14px;
-    }
-
-    .buy-item{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      padding:10px 0;
-      border-top:1px solid rgba(255,255,255,.06);
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .buy-item:first-of-type{border-top:none}
-
     .footer{
       padding:30px 0 50px;
       color:var(--muted2);
@@ -620,21 +577,14 @@
   <div class="bg-blob3"></div>
   <div class="stars"></div>
 
-  <div class="live-buys">
-    <div class="live-track">
-      <span><b class="green">BUY</b> 0.42 SOL · moonwallet123</span>
-      <span><b class="green">BUY</b> 1.05 SOL · earlyape456</span>
-      <span><b class="pink">NEW HOLDER</b> 237 total</span>
-      <span><b class="orange">TRENDING</b> meme pressure rising</span>
-      <span><b class="green">BUY</b> 0.88 SOL · rocketguy999</span>
-      <span><b class="green">BUY</b> 2.10 SOL · sendit007</span>
-      <span><b class="green">BUY</b> 0.42 SOL · moonwallet123</span>
-      <span><b class="green">BUY</b> 1.05 SOL · earlyape456</span>
-      <span><b class="pink">NEW HOLDER</b> 237 total</span>
-      <span><b class="orange">TRENDING</b> meme pressure rising</span>
-      <span><b class="green">BUY</b> 0.88 SOL · rocketguy999</span>
-      <span><b class="green">BUY</b> 2.10 SOL · sendit007</span>
-    </div>
+  <div class="live-strip">
+    <span>Price: <b id="stripPrice">...</b></span>
+    <span>FDV: <b id="stripMc">...</b></span>
+    <span>Liquidity: <b id="stripLiq">...</b></span>
+    <span>24H Volume: <b id="stripVol">...</b></span>
+    <span>5M: <b id="strip5m">...</b></span>
+    <span>1H: <b id="strip1h">...</b></span>
+    <span>Status: <b id="stripStatus">...</b></span>
   </div>
 
   <div class="wrap">
@@ -652,7 +602,7 @@
         <a href="#token">Token</a>
         <a href="#chart">Chart</a>
         <a href="#roadmap">Roadmap</a>
-        <a href="#join">Join</a>
+        <a href="#join">Links</a>
       </nav>
     </header>
 
@@ -666,16 +616,16 @@
         </p>
 
         <div class="hero-btns">
-          <a class="btn btn-buy" href="#" target="_blank">🚀 BUY MPUMP</a>
-          <a class="btn btn-alt" href="https://t.me/moonpumpexe" target="_blank">Telegram</a>
-          <a class="btn btn-secondary" href="https://x.com/moonpumpexe" target="_blank">Twitter / X</a>
+          <a class="btn btn-buy" href="#" id="buyBtn" target="_blank">🚀 BUY MPUMP</a>
+          <a class="btn btn-secondary" href="#" id="chartBtn" target="_blank">View Chart</a>
+          <button class="btn btn-alt" onclick="copyContract()">Copy Contract</button>
         </div>
 
         <div class="hero-meta">
           <div><b>Name:</b> MOONPUMP.EXE</div>
           <div><b>Ticker:</b> MPUMP</div>
           <div><b>Chain:</b> Solana</div>
-          <div><b>Direction:</b> <span class="up">UP</span></div>
+          <div><b>Data:</b> Live</div>
         </div>
       </div>
 
@@ -707,7 +657,7 @@
         </div>
         <div class="card meme-card">
           <h3>Only One Direction</h3>
-          <p><span class="up">UP.</span> That is the mission. That is the meme.</p>
+          <p><span class="green">UP.</span> That is the mission. That is the meme.</p>
         </div>
       </div>
     </section>
@@ -715,9 +665,9 @@
     <section id="token">
       <div class="section-head">
         <small>Token</small>
-        <h2>Parabolic by design.</h2>
+        <h2>Only real numbers.</h2>
         <p>
-          Strong image. Simple story. Zero friction. That is what makes meme coins move.
+          Everything below updates from live pair data.
         </p>
       </div>
 
@@ -731,31 +681,31 @@
           <b>Solana</b>
         </div>
         <div class="stat">
-          <small>Market Cap</small>
-          <b>$27.4K</b>
+          <small>Price</small>
+          <b id="priceMain">...</b>
         </div>
         <div class="stat">
-          <small>Holders</small>
-          <b>237</b>
+          <small>FDV</small>
+          <b id="fdvMain">...</b>
         </div>
       </div>
 
       <div class="stats-grid" style="margin-top:14px;">
         <div class="stat">
+          <small>Liquidity</small>
+          <b id="liqMain">...</b>
+        </div>
+        <div class="stat">
           <small>24H Volume</small>
-          <b>$12.8K</b>
+          <b id="volMain">...</b>
         </div>
         <div class="stat">
-          <small>Launch Type</small>
-          <b>Fair Launch</b>
+          <small>5M Change</small>
+          <b id="change5m">...</b>
         </div>
         <div class="stat">
-          <small>Status</small>
-          <b class="up">PUMPING</b>
-        </div>
-        <div class="stat">
-          <small>Direction</small>
-          <b class="up">UP</b>
+          <small>1H Change</small>
+          <b id="change1h">...</b>
         </div>
       </div>
 
@@ -765,14 +715,6 @@
           <button class="copy-btn" onclick="copyContract()">Copy Contract</button>
         </div>
       </div>
-
-      <div class="recent-buys">
-        <h3>Recent Buys</h3>
-        <div class="buy-item"><span>moonwallet123</span><span class="green">+0.42 SOL</span></div>
-        <div class="buy-item"><span>earlyape456</span><span class="green">+1.05 SOL</span></div>
-        <div class="buy-item"><span>rocketguy999</span><span class="green">+0.88 SOL</span></div>
-        <div class="buy-item"><span>sendit007</span><span class="green">+2.10 SOL</span></div>
-      </div>
     </section>
 
     <section id="chart">
@@ -780,12 +722,13 @@
         <small>Live Chart</small>
         <h2>Watch the rocket.</h2>
         <p>
-          Swap in your real Dexscreener pair and let the candles do the talking.
+          Live chart embedded from Dexscreener.
         </p>
       </div>
 
       <div class="chart-box">
         <iframe
+          id="chartFrame"
           src="https://dexscreener.com/solana/9pr6geoq2ezhg86xbmbg6548xeagkvqysdbjw7hzuehf?embed=1&theme=dark"
           title="MOONPUMP chart">
         </iframe>
@@ -820,7 +763,7 @@
           <div class="step-num">3</div>
           <div>
             <b>Momentum</b>
-            Let FOMO take over and let the chart create the story.
+            Let the chart create the story.
           </div>
         </div>
         <div class="step">
@@ -838,29 +781,25 @@
         <div class="join-grid">
           <div>
             <div class="section-head" style="margin:0;">
-              <small>Community</small>
-              <h2>Join the chaos.</h2>
+              <small>Links</small>
+              <h2>Direct access.</h2>
               <p>
-                Get in early, watch the chart, post the memes, and enjoy the ride.
+                Keep this section simple and real.
               </p>
             </div>
           </div>
 
           <div class="cta-links">
-            <a class="cta-link" href="https://t.me/moonpumpexe" target="_blank">
-              <span>Telegram</span>
-              <span>→</span>
-            </a>
-            <a class="cta-link" href="https://x.com/moonpumpexe" target="_blank">
-              <span>Twitter / X</span>
-              <span>→</span>
-            </a>
-            <a class="cta-link" href="#" target="_blank">
+            <a class="cta-link" href="#" id="pumpLinkA" target="_blank">
               <span>Pump Link</span>
               <span>→</span>
             </a>
-            <a class="cta-link" href="#" target="_blank" style="background:linear-gradient(135deg,var(--orange),var(--yellow)); border-color:transparent; color:#120900; font-weight:900;">
-              <span>BUY MPUMP</span>
+            <a class="cta-link" href="#" id="dexLinkA" target="_blank">
+              <span>Dexscreener</span>
+              <span>→</span>
+            </a>
+            <a class="cta-link" href="javascript:void(0)" onclick="copyContract()">
+              <span>Copy Contract</span>
               <span>→</span>
             </a>
           </div>
@@ -869,16 +808,97 @@
     </section>
 
     <div class="footer">
-      © 2026 MOONPUMP.EXE — No roadmap. No utility. Only UP.
+      © 2026 MOONPUMP.EXE — live pair powered.
     </div>
   </div>
 
   <script>
-    function copyContract() {
-      const text = document.getElementById('contractText').innerText;
-      navigator.clipboard.writeText(text);
-      alert('Contract copied!');
+    const pairAddress = "9pr6geoq2ezhg86xbmbg6548xeagkvqysdbjw7hzuehf";
+    const dexUrl = `https://dexscreener.com/solana/${pairAddress}`;
+    const embedUrl = `${dexUrl}?embed=1&theme=dark`;
+    const pumpUrl = "#"; // zet hier je echte buy link
+
+    document.getElementById("chartFrame").src = embedUrl;
+    document.getElementById("chartBtn").href = dexUrl;
+    document.getElementById("dexLinkA").href = dexUrl;
+    document.getElementById("pumpLinkA").href = pumpUrl;
+    document.getElementById("buyBtn").href = pumpUrl;
+
+    function money(v){
+      const n = Number(v || 0);
+      if (n >= 1000000) return "$" + (n/1000000).toFixed(2) + "M";
+      if (n >= 1000) return "$" + (n/1000).toFixed(2) + "K";
+      return "$" + n.toFixed(2);
     }
+
+    function pctText(n){
+      const sign = n > 0 ? "+" : "";
+      return sign + n.toFixed(2) + "%";
+    }
+
+    function colorPct(el, value){
+      el.textContent = pctText(value);
+      el.classList.remove("green", "red");
+      if (value > 0) el.classList.add("green");
+      if (value < 0) el.classList.add("red");
+    }
+
+    async function loadPair(){
+      try{
+        const res = await fetch(`https://api.dexscreener.com/latest/dex/pairs/solana/${pairAddress}`);
+        const data = await res.json();
+        const p = data.pair;
+        if(!p) return;
+
+        const price = Number(p.priceUsd || 0);
+        const fdv = Number(p.fdv || 0);
+        const liq = Number(p.liquidity?.usd || 0);
+        const vol24 = Number(p.volume?.h24 || 0);
+        const ch5 = Number(p.priceChange?.m5 || 0);
+        const ch1 = Number(p.priceChange?.h1 || 0);
+
+        document.getElementById("stripPrice").textContent = "$" + price.toFixed(8);
+        document.getElementById("stripMc").textContent = money(fdv);
+        document.getElementById("stripLiq").textContent = money(liq);
+        document.getElementById("stripVol").textContent = money(vol24);
+
+        const strip5m = document.getElementById("strip5m");
+        const strip1h = document.getElementById("strip1h");
+        colorPct(strip5m, ch5);
+        colorPct(strip1h, ch1);
+
+        const statusEl = document.getElementById("stripStatus");
+        statusEl.classList.remove("green", "red");
+        if (ch5 > 3 || ch1 > 8) {
+          statusEl.textContent = "Pumping";
+          statusEl.classList.add("green");
+        } else if (ch5 < -3 || ch1 < -8) {
+          statusEl.textContent = "Pullback";
+          statusEl.classList.add("red");
+        } else {
+          statusEl.textContent = "Stable";
+        }
+
+        document.getElementById("priceMain").textContent = "$" + price.toFixed(8);
+        document.getElementById("fdvMain").textContent = money(fdv);
+        document.getElementById("liqMain").textContent = money(liq);
+        document.getElementById("volMain").textContent = money(vol24);
+
+        colorPct(document.getElementById("change5m"), ch5);
+        colorPct(document.getElementById("change1h"), ch1);
+      }catch(e){
+        console.log("load error", e);
+      }
+    }
+
+    function copyContract(){
+      const text = document.getElementById("contractText").innerText;
+      navigator.clipboard.writeText(text);
+      alert("Contract copied!");
+    }
+
+    loadPair();
+    setInterval(loadPair, 10000);
   </script>
 </body>
-                                </html>
+</html>
