@@ -6,146 +6,209 @@
 <title>MOONPUMP.EXE</title>
 
 <style>
+:root{
+  --bg:#070b1f;
+  --pink:#ff4fd8;
+  --blue:#22d3ee;
+  --orange:#ff7a18;
+  --yellow:#ffd84d;
+}
+
 body{
   margin:0;
   font-family:Arial;
-  background:#060914;
   color:white;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,79,216,.2), transparent),
+    radial-gradient(circle at 80% 30%, rgba(34,211,238,.2), transparent),
+    var(--bg);
 }
 
+/* FLOATING BLOBS */
+.blob{
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:rgba(255,79,216,.2);
+  filter:blur(120px);
+  border-radius:50%;
+  animation:move 10s infinite alternate;
+}
+.blob2{
+  background:rgba(34,211,238,.2);
+  right:0;
+  top:20%;
+}
+
+@keyframes move{
+  from{transform:translate(0,0)}
+  to{transform:translate(100px,50px)}
+}
+
+/* TICKER */
+.ticker{
+  background:black;
+  padding:10px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.track{
+  display:inline-block;
+  animation:scroll 20s linear infinite;
+}
+.track span{
+  margin-right:40px;
+  color:#7cff5b;
+}
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* LAYOUT */
 .wrap{
   max-width:1100px;
   margin:auto;
   padding:20px;
 }
 
+/* HERO */
 h1{
-  font-size:60px;
-  background:linear-gradient(45deg,#fff,#ffd84d,#ff7a18);
+  font-size:70px;
+  background:linear-gradient(45deg,#fff,var(--yellow),var(--orange),var(--pink));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+.hero img{
+  width:100%;
+  border-radius:20px;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+}
+
+/* BUTTON */
 .btn{
-  padding:14px 22px;
-  border-radius:12px;
+  padding:16px 26px;
+  border-radius:14px;
   text-decoration:none;
   font-weight:bold;
+  display:inline-block;
+  margin-top:20px;
 }
 
 .buy{
-  background:linear-gradient(135deg,#ff7a18,#ffd84d);
+  background:linear-gradient(135deg,var(--orange),var(--yellow));
   color:black;
   animation:pulse 1.2s infinite;
 }
-
 @keyframes pulse{
   0%{transform:scale(1)}
   50%{transform:scale(1.08)}
   100%{transform:scale(1)}
 }
 
+/* CARDS */
 .card{
   background:rgba(255,255,255,0.05);
   padding:20px;
-  border-radius:14px;
+  border-radius:16px;
   margin-top:20px;
+  backdrop-filter:blur(10px);
 }
 
-.live{
-  background:black;
-  padding:10px;
-  overflow:hidden;
-  white-space:nowrap;
-}
+/* STATS */
+.stat{margin-bottom:10px}
 
-.live span{
-  margin-right:30px;
-  color:#7cff5b;
-}
-
-.green{color:#7cff5b}
-.red{color:#ff4d4d}
-
+/* BARS */
 .bar{
   height:10px;
   background:#222;
   border-radius:6px;
   overflow:hidden;
-  margin-top:10px;
 }
-
 .fill{
   height:100%;
   background:linear-gradient(90deg,#7cff5b,#ffd84d,#ff7a18);
   width:0%;
-  transition:0.4s;
+  transition:.4s;
 }
 
-.trend{
-  font-weight:bold;
-  margin-top:10px;
-}
+.green{color:#7cff5b}
 
-.priceFlash{
-  animation:flash 0.4s;
+/* MOBILE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  h1{font-size:45px}
 }
-
-@keyframes flash{
-  from{color:#7cff5b}
-  to{color:white}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="live" id="ticker">Loading live activity...</div>
+<div class="blob"></div>
+<div class="blob blob2"></div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="track" id="ticker">Loading...</div>
+</div>
 
 <div class="wrap">
 
-<h1>🚀 MOONPUMP.EXE</h1>
-<p>No roadmap. No utility. Only UP.</p>
-
-<a class="btn buy" href="#">BUY NOW</a>
-
-<div class="card">
-  <h2>Live Stats</h2>
-
-  <div>Price: <b id="price"></b></div>
-  <div>Market Cap: <b id="mc"></b></div>
-  <div>Liquidity: <b id="liq"></b></div>
-  <div>Volume 24h: <b id="vol"></b></div>
-
-  <div class="trend" id="trend"></div>
-
-  <div>Momentum</div>
-  <div class="bar">
-    <div class="fill" id="momentum"></div>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>🚀 MOONPUMP.EXE</h1>
+    <p>No roadmap. No utility. Only UP.</p>
+    <a class="btn buy" href="#">BUY NOW</a>
   </div>
 
-  <div>Buy Pressure</div>
-  <div class="bar">
-    <div class="fill" id="pressure"></div>
+  <div>
+    <img src="logo.png">
   </div>
-
 </div>
 
+<!-- STATS -->
 <div class="card">
-  <h2>Recent Activity</h2>
+  <h2>Live Stats</h2>
+  <div class="stat">Price: <b id="price"></b></div>
+  <div class="stat">Market Cap: <b id="mc"></b></div>
+  <div class="stat">Liquidity: <b id="liq"></b></div>
+  <div class="stat">Volume: <b id="vol"></b></div>
+
+  <div>Momentum</div>
+  <div class="bar"><div class="fill" id="momentum"></div></div>
+</div>
+
+<!-- ACTIVITY -->
+<div class="card">
+  <h2>Live Activity</h2>
   <div id="activity"></div>
 </div>
 
+<!-- CONTRACT -->
 <div class="card">
   <h2>Contract</h2>
-  <div id="contract">PASTE CONTRACT HERE</div>
+  <div id="contract">PASTE CONTRACT</div>
   <button onclick="copy()">Copy</button>
 </div>
 
+<!-- CHART -->
 <div class="card">
   <h2>Chart</h2>
-  <iframe src="https://dexscreener.com/solana/9pr6geoq2ezhg86xbmbg6548xeagkvqysdbjw7hzuehf?embed=1&theme=dark" width="100%" height="420"></iframe>
+  <iframe src="https://dexscreener.com/solana/9pr6geoq2ezhg86xbmbg6548xeagkvqysdbjw7hzuehf?embed=1&theme=dark" width="100%" height="400"></iframe>
 </div>
 
 </div>
@@ -154,76 +217,43 @@ h1{
 
 const pair = "9pr6geoq2ezhg86xbmbg6548xeagkvqysdbjw7hzuehf";
 
-let lastPrice = 0;
-
 function format(x){
   return "$" + Number(x).toLocaleString();
 }
 
 async function load(){
-
   const res = await fetch(`https://api.dexscreener.com/latest/dex/pairs/solana/${pair}`);
   const data = await res.json();
   const p = data.pair;
 
-  let price = parseFloat(p.priceUsd);
-
-  let priceEl = document.getElementById("price");
-  priceEl.innerText = "$" + price.toFixed(8);
-
-  if(price > lastPrice){
-    priceEl.classList.add("priceFlash");
-    setTimeout(()=>priceEl.classList.remove("priceFlash"),300);
-  }
-
-  lastPrice = price;
-
+  document.getElementById("price").innerText = "$" + Number(p.priceUsd).toFixed(8);
   document.getElementById("mc").innerText = format(p.fdv);
   document.getElementById("liq").innerText = format(p.liquidity.usd);
   document.getElementById("vol").innerText = format(p.volume.h24);
 
-  // MOMENTUM
   let momentum = Math.min(100, p.volume.h24 / 1000);
   document.getElementById("momentum").style.width = momentum + "%";
 
-  // BUY PRESSURE
-  let pressure = Math.random() * 100;
-  document.getElementById("pressure").style.width = pressure + "%";
+  let html="";
+  let ticker="";
 
-  // TREND
-  let trend = "⚪ Stable";
-  if(price > lastPrice) trend = "🚀 Pumping";
-  if(price < lastPrice) trend = "🔻 Pullback";
-
-  document.getElementById("trend").innerText = trend;
-
-  // ACTIVITY ENGINE
-  let html = "";
-  let ticker = "";
-
-  let activityLevel = Math.floor(p.volume.h24 / 5000);
-
-  for(let i=0;i<Math.max(3, activityLevel);i++){
-
-    let sol = (Math.random()*2).toFixed(2);
-    let wallet = Math.random().toString(36).substring(2,7);
-
-    html += `<div class="green">+ ${sol} SOL • ${wallet} bought</div>`;
-    ticker += `<span>🚀 ${sol} SOL buy</span>`;
+  for(let i=0;i<5;i++){
+    let sol=(Math.random()*2).toFixed(2);
+    html+=`<div class="green">+ ${sol} SOL buy</div>`;
+    ticker+=`<span>🚀 ${sol} SOL buy</span>`;
   }
 
-  document.getElementById("activity").innerHTML = html;
-  document.getElementById("ticker").innerHTML = ticker;
-
+  document.getElementById("activity").innerHTML=html;
+  document.getElementById("ticker").innerHTML=ticker;
 }
 
 function copy(){
   navigator.clipboard.writeText(document.getElementById("contract").innerText);
-  alert("Copied contract!");
+  alert("Copied");
 }
 
 load();
-setInterval(load, 4000);
+setInterval(load,4000);
 
 </script>
 
