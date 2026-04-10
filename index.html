@@ -1,657 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOONPUMP.EXE</title>
-  <meta
-    name="description"
-    content="MOONPUMP.EXE — No roadmap. No utility. Only one direction. UP."
-  />
-  <style>
-    :root {
-      --bg: #050816;
-      --bg2: #0b1023;
-      --card: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.12);
-      --text: #ffffff;
-      --muted: #c7d2fe;
-      --muted2: #94a3b8;
-      --pink: #ff4fd8;
-      --purple: #7c3aed;
-      --blue: #22d3ee;
-      --green: #7cff5b;
-      --orange: #ff5b2e;
-      --yellow: #ffd84d;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOONPUMP.EXE</title>
 
-    * {
-      box-sizing: border-box;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#070b1f;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* ANIMATED BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,#ff4fd8,transparent);
+  top:-100px;
+  left:-100px;
+  filter:blur(120px);
+  animation:move 8s infinite alternate;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top, rgba(124, 58, 237, 0.28) 0%, rgba(5, 8, 22, 0) 35%),
-        radial-gradient(circle at right, rgba(34, 211, 238, 0.16) 0%, rgba(5, 8, 22, 0) 28%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      overflow-x: hidden;
-    }
+@keyframes move{
+  from{transform:translate(0,0);}
+  to{transform:translate(200px,100px);}
+}
 
-    .glow,
-    .glow2 {
-      position: fixed;
-      border-radius: 999px;
-      filter: blur(90px);
-      z-index: 0;
-      pointer-events: none;
-    }
+/* HEADER */
+.header{
+  padding:60px 20px;
+}
 
-    .glow {
-      width: 280px;
-      height: 280px;
-      background: rgba(255, 79, 216, 0.18);
-      left: -50px;
-      top: 80px;
-    }
+.header h1{
+  font-size:70px;
+  margin:0;
+  background:linear-gradient(45deg,#ff7a18,#ffd84d,#ff4fd8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    .glow2 {
-      width: 340px;
-      height: 340px;
-      background: rgba(34, 211, 238, 0.16);
-      right: -80px;
-      top: 220px;
-    }
+.header p{
+  font-size:22px;
+  color:#aaa;
+}
 
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+/* LOGO */
+.logo{
+  width:300px;
+  margin:40px auto;
+  animation:float 3s ease-in-out infinite;
+}
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 22px 0;
-    }
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: white;
-    }
+/* BUTTONS */
+.buttons{
+  margin-top:30px;
+}
 
-    .brand-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      color: #0b1023;
-      background: linear-gradient(135deg, var(--orange), var(--yellow));
-      box-shadow: 0 10px 24px rgba(255, 91, 46, 0.35);
-    }
+.btn{
+  display:inline-block;
+  margin:10px;
+  padding:16px 30px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.2s;
+}
 
-    .brand-text b {
-      display: block;
-      font-size: 18px;
-      letter-spacing: 0.03em;
-    }
+/* PUMP BUTTON */
+.buy{
+  background:linear-gradient(45deg,#ff7a18,#ffd84d);
+  color:black;
+  animation:pulse 1.2s infinite;
+}
 
-    .brand-text span {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: #9ca3af;
-      text-transform: uppercase;
-    }
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
 
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
+.buy:hover{
+  transform:scale(1.15);
+}
 
-    .nav-links a {
-      text-decoration: none;
-      color: #cbd5e1;
-      font-size: 14px;
-    }
+/* OTHER BUTTONS */
+.telegram{background:#229ED9;}
+.twitter{background:#1DA1F2;}
 
-    .nav-links a:hover {
-      color: #fff;
-    }
+.btn:hover{
+  transform:translateY(-3px);
+}
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 34px;
-      align-items: center;
-      padding: 30px 0 64px;
-    }
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+}
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(124, 58, 237, 0.16);
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      color: #ddd6fe;
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
+.box{
+  background:#11173b;
+  border-radius:25px;
+  padding:30px;
+  margin:20px auto;
+  max-width:550px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
 
-    h1 {
-      margin: 0;
-      font-size: 72px;
-      line-height: 0.94;
-      letter-spacing: -0.04em;
-    }
+/* GRID */
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
 
-    .hero p {
-      color: var(--muted);
-      font-size: 20px;
-      line-height: 1.65;
-      margin: 20px 0 0;
-      max-width: 640px;
-    }
+.card{
+  width:280px;
+  background:#12183f;
+  border-radius:20px;
+  padding:20px;
+}
 
-    .hero-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
+/* COPY BUTTON */
+.copy{
+  margin-top:15px;
+  background:#222;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 22px;
-      text-decoration: none;
-      border-radius: 18px;
-      font-weight: 800;
-      transition: 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-main {
-      color: #07131d;
-      background: linear-gradient(135deg, #ff7a18, #ffd84d);
-      box-shadow: 0 14px 30px rgba(255, 122, 24, 0.28);
-    }
-
-    .btn-secondary {
-      color: white;
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--border);
-    }
-
-    .hero-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 34px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      overflow: hidden;
-    }
-
-    .hero-image {
-      background: rgba(5, 8, 22, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 26px;
-      padding: 14px;
-    }
-
-    .hero-image img {
-      width: 100%;
-      display: block;
-      border-radius: 18px;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 24px;
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    .meta b {
-      color: white;
-    }
-
-    section {
-      padding: 20px 0 24px;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 24px;
-    }
-
-    .section-head small {
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: #f0abfc;
-      font-size: 12px;
-      margin-bottom: 8px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: 40px;
-      line-height: 1.05;
-    }
-
-    .section-head p {
-      margin-top: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 18px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .token-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .stat {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 18px;
-    }
-
-    .stat small {
-      display: block;
-      color: #9ca3af;
-      margin-bottom: 6px;
-      font-size: 13px;
-    }
-
-    .stat b {
-      font-size: 20px;
-    }
-
-    .meme-box {
-      background: linear-gradient(
-        135deg,
-        rgba(255, 91, 46, 0.12),
-        rgba(124, 58, 237, 0.16),
-        rgba(34, 211, 238, 0.12)
-      );
-    }
-
-    .roadmap {
-      display: grid;
-      gap: 14px;
-    }
-
-    .step {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-    }
-
-    .step-num {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      flex: 0 0 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--orange), var(--yellow));
-      color: #07131d;
-      font-weight: 900;
-    }
-
-    .step div {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .step b {
-      display: block;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .join {
-      overflow: hidden;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 91, 46, 0.12),
-        rgba(124, 58, 237, 0.16),
-        rgba(34, 211, 238, 0.12)
-      );
-    }
-
-    .join-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .cta-links {
-      display: grid;
-      gap: 14px;
-    }
-
-    .cta-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 18px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      color: #fff;
-      border: 1px solid var(--border);
-      background: rgba(2, 6, 23, 0.55);
-    }
-
-    .cta-link:hover {
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .footer {
-      padding: 30px 0 50px;
-      color: var(--muted2);
-      font-size: 14px;
-      text-align: center;
-    }
-
-    @media (max-width: 920px) {
-      .hero,
-      .grid-3,
-      .token-panel,
-      .join-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 48px;
-      }
-
-      .section-head h2 {
-        font-size: 34px;
-      }
-
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-    }
-  </style>
+/* FOOTER */
+.footer{
+  padding:40px;
+  color:#777;
+}
+</style>
 </head>
+
 <body>
-  <div class="glow"></div>
-  <div class="glow2"></div>
 
-  <div class="wrap">
-    <header class="nav">
-      <a href="#" class="brand">
-        <div class="brand-badge">M</div>
-        <div class="brand-text">
-          <b>MOONPUMP.EXE</b>
-          <span>MPUMP</span>
-        </div>
-      </a>
+<div class="header">
+  <h1>MOONPUMP.EXE</h1>
+  <p>No roadmap. No utility. Only UP 🚀</p>
 
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#token">Token</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#join">Join</a>
-      </nav>
-    </header>
+  <img src="logo.png" class="logo">
 
-    <section class="hero">
-      <div>
-        <div class="pill">No roadmap · No utility · Only UP</div>
-        <h1>Built to pump.<br />Built to fly.</h1>
-        <p>
-          MOONPUMP.EXE is pure meme momentum. No fake promises. No boring roadmap.
-          Just a rocket, a moon, and one direction.
-        </p>
-
-        <div class="hero-btns">
-          <a class="btn btn-main" href="https://t.me/moonpumpexe" target="_blank">Join Telegram</a>
-          <a class="btn btn-secondary" href="https://x.com/moonpumpexe" target="_blank">Follow on X</a>
-        </div>
-
-        <div class="meta">
-          <div><b>Name:</b> MOONPUMP.EXE</div>
-          <div><b>Ticker:</b> MPUMP</div>
-          <div><b>Chain:</b> Solana</div>
-          <div><b>Vibe:</b> Meme / Chaos / Moon</div>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hero-image">
-          <img src="logo.png" alt="MOONPUMP.EXE logo" />
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-head">
-        <small>About</small>
-        <h2>This is not a normal coin.</h2>
-        <p>
-          MOONPUMP.EXE is a pure attention machine. Built for speed, hype, memes,
-          and chart energy. If you are early, you win. If you are late, you watch.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card meme-box">
-          <h3>No Roadmap</h3>
-          <p>No fake plans. No 12-phase nonsense. The chart is the roadmap.</p>
-        </div>
-        <div class="card meme-box">
-          <h3>No Utility</h3>
-          <p>No pretending to solve the world. This is meme energy in its purest form.</p>
-        </div>
-        <div class="card meme-box">
-          <h3>Only One Direction</h3>
-          <p>UP. That is the whole pitch. That is the whole joke. That is the whole mission.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="token">
-      <div class="section-head">
-        <small>Token</small>
-        <h2>Parabolic by design.</h2>
-        <p>
-          Clean meme branding, simple message, strong image. That is all a coin like this needs.
-        </p>
-      </div>
-
-      <div class="token-panel">
-        <div class="card">
-          <h3>Why it hits</h3>
-          <p>
-            Strong visual. Simple story. Zero friction. MOONPUMP.EXE is built to
-            get attention instantly and spread fast through memes, screenshots, and hype.
-          </p>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <small>Ticker</small>
-            <b>MPUMP</b>
-          </div>
-          <div class="stat">
-            <small>Chain</small>
-            <b>Solana</b>
-          </div>
-          <div class="stat">
-            <small>Type</small>
-            <b>Meme Coin</b>
-          </div>
-          <div class="stat">
-            <small>Direction</small>
-            <b style="color: var(--green);">UP</b>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="roadmap">
-      <div class="section-head">
-        <small>Roadmap</small>
-        <h2>Simple. Viral. Explosive.</h2>
-        <p>
-          This one does not need a fake corporate plan. It just needs momentum.
-        </p>
-      </div>
-
-      <div class="roadmap">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div>
-            <b>Launch</b>
-            Drop the coin, buy early, and get the chart moving.
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div>
-            <b>Spread</b>
-            Push the image, the meme, and the screenshots everywhere.
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div>
-            <b>Momentum</b>
-            Let the meme do the work and let FOMO take over.
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div>
-            <b>Moon</b>
-            The chart either flies or it dies trying. That is the game.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="join">
-      <div class="card join">
-        <div class="join-grid">
-          <div>
-            <div class="section-head" style="margin:0;">
-              <small>Community</small>
-              <h2>Join the chaos.</h2>
-              <p>
-                Get in early, watch the chart, spam the memes, and enjoy the ride.
-              </p>
-            </div>
-          </div>
-
-          <div class="cta-links">
-            <a class="cta-link" href="https://t.me/moonpumpexe" target="_blank">
-              <span>Telegram</span>
-              <span>→</span>
-            </a>
-            <a class="cta-link" href="https://x.com/moonpumpexe" target="_blank">
-              <span>X / Twitter</span>
-              <span>→</span>
-            </a>
-            <a class="cta-link" href="#" target="_blank">
-              <span>Pump Link</span>
-              <span>→</span>
-            </a>
-            <a
-              class="cta-link"
-              href="#"
-              target="_blank"
-              style="background:linear-gradient(135deg,var(--orange),var(--yellow)); border-color:transparent; color:#07131d; font-weight:900;"
-            >
-              <span>BUY MPUMP</span>
-              <span>→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer">
-      © 2026 MOONPUMP.EXE — No roadmap. No utility. Only UP.
-    </div>
+  <div class="buttons">
+    <a href="#" class="btn buy">🚀 BUY NOW</a>
+    <a href="#" class="btn telegram">Telegram</a>
+    <a href="#" class="btn twitter">Twitter</a>
   </div>
+</div>
+
+<div class="section">
+  <h2>🔥 WHAT IS THIS?</h2>
+  <div class="box">
+    This is not a project.<br><br>
+    This is a pump machine.<br><br>
+    No roadmap. No promises.<br>
+    Just momentum.
+  </div>
+</div>
+
+<div class="section">
+  <h2>📊 TOKEN INFO</h2>
+
+  <div class="grid">
+    <div class="card">Name<br><b>MOONPUMP.EXE</b></div>
+    <div class="card">Ticker<br><b>MPUMP</b></div>
+    <div class="card">Chain<br><b>Solana</b></div>
+    <div class="card">Direction<br><b style="color:#7cff5b;">UP</b></div>
+  </div>
+
+  <div class="copy" onclick="copyAddress()">
+    Copy Contract Address
+  </div>
+</div>
+
+<div class="section">
+  <h2>📈 LIVE CHART</h2>
+
+  <iframe 
+    src="https://dexscreener.com/solana/9pr6geoq2ezhg86xbmbg6548xeagkvqysdbjw7hzuehf?embed=1"
+    width="90%" 
+    height="500"
+    style="border:none; border-radius:20px;">
+  </iframe>
+
+</div>
+
+<div class="footer">
+  © 2026 MOONPUMP.EXE — Built to pump.
+</div>
+
+<script>
+function copyAddress(){
+  const address = "PASTE_YOUR_CONTRACT_HERE";
+  navigator.clipboard.writeText(address);
+  alert("Copied!");
+}
+</script>
+
 </body>
 </html>
